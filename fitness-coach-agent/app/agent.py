@@ -307,6 +307,7 @@ workflow_description = (
 ui_description = (
     "Keep every surface tiny and flat: ONE Card > ONE Column > a few Text rows. "
     "Never nest a Card inside a Card. "
+    "The surfaceId in beginRendering and surfaceUpdate MUST be identical (e.g. 'daily_summary'). "
     "Use ONLY these components: Card, Column, Row, Text, and Image. Do not use "
     "Table or Heading (unsupported), or Buttons, actions, or forms (they do "
     "nothing in adk web). "

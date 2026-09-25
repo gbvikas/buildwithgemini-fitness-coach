@@ -250,6 +250,17 @@ def a2ui_callback(
                 )
             )
 
+        # Ensure surfaceId in beginRendering matches surfaceUpdate to avoid blank cards in adk web
+        surface_id = None
+        for m in messages:
+            if "surfaceUpdate" in m and isinstance(m["surfaceUpdate"], dict):
+                surface_id = m["surfaceUpdate"].get("surfaceId")
+                break
+        if surface_id:
+            for m in messages:
+                if "beginRendering" in m and isinstance(m["beginRendering"], dict):
+                    m["beginRendering"]["surfaceId"] = surface_id
+
         new_parts = [_wrap_a2ui_part(m) for m in messages]
         return LlmResponse(
             content=types.Content(role="model", parts=new_parts),
